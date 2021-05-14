@@ -1329,3 +1329,18 @@
 [INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Employee     May-14--21 Friday  EDT  00:28:16        
 [INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Johnny     May-14--21 Friday  EDT  00:29:58        
 [INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Johnny     May-14--21 Friday  EDT  00:32:03        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Johnny     May-14--21 Friday  EDT  12:33:43        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Failed Log in attempt by JohnnyNewguy     May-14--21 Friday  EDT  12:44:01        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by JohnnyNewGuy     May-14--21 Friday  EDT  12:44:06        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Here is your account!     May-14--21 Friday  EDT  12:44:14        
+[INFO]   - {com.app.Bank_Main}       Account updated successfully     May-14--21 Friday  EDT  12:44:14        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Employee     May-14--21 Friday  EDT  12:45:51        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by JohnnyNewGuy     May-14--21 Friday  EDT  12:47:57        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Here is your account!     May-14--21 Friday  EDT  12:48:05        
+[INFO]   - {com.app.Bank_Main}       Account updated successfully     May-14--21 Friday  EDT  12:48:05        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Here is your account!     May-14--21 Friday  EDT  12:48:06        
+[INFO]   - {com.app.Bank_Main}       Account updated successfully     May-14--21 Friday  EDT  12:48:06        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Employee     May-14--21 Friday  EDT  12:48:40        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by JohnnyNewGuy     May-14--21 Friday  EDT  12:50:52        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Employee     May-14--21 Friday  EDT  12:51:14        
+[INFO]   - {com.app.dao.impl.UserDAOImpl}       Successful log in attempt by Employee     May-14--21 Friday  EDT  12:52:10        
