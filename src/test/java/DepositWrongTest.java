@@ -3,8 +3,6 @@ import com.app.dao.impl.TransactionsDAOImpl;
 import com.app.model.BankAccount;
 import com.app.model.Transaction;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -13,7 +11,6 @@ import java.util.Calendar;
 
 public class DepositWrongTest {
 
-    @Mock
     TransactionsDAOImpl transactionsDAO = new TransactionsDAOImpl();
 
     @Test
@@ -21,8 +18,9 @@ public class DepositWrongTest {
 
 
         Transaction transaction = new Transaction();
-        BankAccount bankAccount = new BankAccount();
+
         try {
+
             Calendar calendar = Calendar.getInstance();
             java.util.Date now = calendar.getTime();
             transaction.setTransactiontime(new Timestamp(now.getTime()));

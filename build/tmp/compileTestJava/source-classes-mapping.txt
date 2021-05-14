@@ -1,0 +1,24 @@
+FakeAccountTest.java
+ FakeAccountTest
+UserLoginTest.java
+ UserLoginTest
+InvalidMenuTest.java
+ InvalidMenuTest
+TransactionTest.java
+ TransactionTest
+InvalidSignUpTest.java
+ InvalidSignUpTest
+InvalidLoginTest.java
+ InvalidLoginTest
+MenuTest.java
+ MenuTest
+InvalidUsernameTest.java
+ InvalidUsernameTest
+LoginMenuTest.java
+ LoginMenuTest
+DepositWrongTest.java
+ DepositWrongTest
+MockSignUp.java
+ MockSignUp
+MockBadDeposit.java
+ MockBadDeposit
