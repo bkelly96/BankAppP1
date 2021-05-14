@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer THE BANK</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-image: url(https://www.futuregamereleases.com/wp-content/uploads/2016/10/michael-mayers-dead-by-daylight.jpg);
+      background-size: cover;
+    }
+    .customer-menu {
+      width: 900px;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      background: #fff;
+      padding: 20px;
+      margin: 8% auto;
+      text-align: center;
+    }
+    .input-box {
+      border-radius: 20px;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #999;
+      outline: none;
+    }
+    button {
+      color: #fff;
+      width: 30%;
+      padding: 10px;
+      border-radius: 80px;
+      font-size: 15px;
+      margin: 10px 0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn {
+      background-color: #1c8adb;
+    }
+  </style>
+  <body>
+    <div class="customer-menu">
+      <h1>Customer Menu</h1>
+      <form method="PUT" action="#">
+        <tr>
+          <td><button type="button" id="transfer-btn" class="btn">Transfer</button></td>
+          <td><input type="number"  id = "transfer-btn-amount" placeholder="Amount to Transfer" /></td>
+          <td><input type="number" placeholder="From This Account" /></td>
+          <td><input type="number" placeholder="To This Account" /></td>
+        </tr>
+        <tr>
+          <td><button type="button" id="deposit-btn" class="btn">Deposit</button></td>
+          <td><input type="number" id = "deposit-btn-amount" placeholder="Amount to Deposit" /></td>
+          <td><input type="number" id = "deposit-btn-bankaccountid" placeholder="Bank ID Number" /></td>
+        </tr>
+        <tr>
+          <td><button type="button" id="withdraw-btn" class="btn">Withdraw</button></td>
+          <td><input type="number" id = "withdraw-btn-amount" placeholder="Amount to Withdraw" /></td>
+          <td><input type="number" id = "withdraw-btn-bankaccountid" placeholder="Bank ID Number" /></td>
+        </tr>
+      </form>
+      <form method="GET" action="#">
+        <tr>
+          <td><button type="button" id="view-accounts-btn" class="btn">View Accounts</button></td>
+        </tr>
+      </form>
+      <form method="POST" action="#">
+        <tr>
+          <td><button type="button" id="apply-btn" onclick ="window.location.href = 'B_Apply_Page_P1.html'" class="btn">Apply For Accounts</button></td>
+          <td><input type="number" placeholder="Starting Balance" /></td>
+        </tr>
+      </form>
+    </div>
+  <script>
+  async function userTransaction(e){
+    var caller = e.target || e.srcElement;
+  let amount = document.getElementById(caller.id + "-amount").value;
+  if(caller.id == "withdraw-btn"){
+      amount *= -1;
+  }
+  const bankaccountid = document.getElementById(caller.id + "-bankaccountid").value;
+
+  const response = await fetch("/userTransactions", {
+     method: "PATCH",
+     headers: {
+       "Content-Type": "application/s",
+     },
+    body: JSON.stringify({
+       amount: amount,
+       bankaccountid: bankaccountid,
+      }),
+    });
+
+    if(response.status === 406){
+
+    console.log(response);
+
+     response.text().then(text => alert(text))
+
+   } else if (response.status === 200){
+
+    alert("account updated successfully");
+
+    }
+
+   }
+   document.getElementById("withdraw-btn").addEventListener("click", userTransaction);
+   document.getElementById("deposit-btn").addEventListener("click", userTransaction);
+
+    </script>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

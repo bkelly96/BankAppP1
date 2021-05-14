@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <table id="accountTable" border="1px">
+        <tr>
+          <td>How many Accounts do you want to create?</td>
+          <td>
+            <input id="account-number" type="Number" />
+          </td>
+          <td>
+            <button type="button" onclick="generateAccounts()" class="btn">
+              Submit
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      var numOfAccounts = 0;
+
+      function generateAccounts() {
+        numOfAccounts = document.getElementById("account-number").value;
+
+        var table = document.getElementById("accountTable");
+
+        var tableLength = table.rows.length;
+
+        for (let i = 1; i < tableLength; i++) {
+          table.deleteRow(1);
+        }
+
+        for (let i = 0; i < numOfAccounts; i++) {
+          let html =
+            "<td>" +
+            "Enter the Starting Balance" +
+            "</td>" +
+            "<td>" +
+            "<input id = 'account-number-" +
+            i +
+            "'  type='Number'>" +
+            "</td>";
+
+          let e = document.createElement("tr");
+          e.innerHTML = html;
+          table.append(e);
+        }
+
+        let html =
+          "<td>" +
+          "</td>" +
+          "<td>" +
+          "<button id = 'update-server' onclick = 'updateServer()'> Save Tables </button>" +
+          "</td>";
+
+        let e = document.createElement("tr");
+        e.innerHTML = html;
+        table.append(e);
+      }
+
+      async function updateServer() {
+        for (let i = 0; i < numOfAccounts; i++) {
+          let amount = document.getElementById("account-number-" + i).value;
+
+          const response = await fetch("/applyForAccount", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/s",
+            },
+
+            body: JSON.stringify({
+              accountBalance: amount,
+            }),
+          });
+          if (response.status === 406) {
+            alert("error creating account");
+            return;
+          }
+        }
+        alert("Accounts Created");
+      }
+    </script>
+  </body>
+</html>

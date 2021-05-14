@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee THE BANK</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-image: url(https://www.futuregamereleases.com/wp-content/uploads/2016/10/michael-mayers-dead-by-daylight.jpg);
+      background-size: cover;
+    }
+    .employee-menu {
+      width: 600px;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      background: #fff;
+      padding: 20px;
+      margin: 8% auto;
+      text-align: center;
+    }
+    .input-box {
+      border-radius: 20px;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #999;
+      outline: none;
+    }
+    button {
+      color: #fff;
+      width: 100%;
+      padding: 10px;
+      border-radius: 80px;
+      font-size: 15px;
+      margin: 10px 0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn {
+      background-color: #1c8adb;
+    }
+  </style>
+  <body>
+    <div class="employee-menu">
+      <h1>Employee Menu</h1>
+        <table border="1px">
+            <tr>
+                <td>View Account</td>
+                <td><input type="number" placeholder="Customer Account #" /></td>
+                <td><button type="button" class="btn">View</button></td>
+            </tr>
+            <tr>
+                <td>Display Transactions</td>
+                <td></td>
+                <td><button type="button" class="btn" onclick="window.location.href = 'transactionTable.html'">View</button></td>
+            </tr>
+            <tr>
+                <td>View Pending Accounts</td>
+                <td></td>
+                <td><button type="button" class="btn">View</button></td>
+            </tr>
+          <td><input type="number" id = "bank-account-number"placeholder="Bank Account #"/></td>
+          <td><select id="select-value">
+            <option value="approved">approve</option>
+            <option value="denied">deny</option>
+          </select></td>
+          <td><button type="submit" id="submit-btn" onclick="updateServer()" class="btn" value="Register">Register</td>
+    </div>
+  <script>
+      async function updateServer(){
+
+      let select = document.getElementById("select-value").value;
+      let bankAccountId = document.getElementById("bank-account-number").value;
+
+       const response = await fetch("/updateStatus", {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/s",
+            },
+            body: JSON.stringify({
+              statuses: select,
+              bankAccountId : bankAccountId
+            }),
+            });
+           if (response.status === 500) {
+              alert("Error Changing Status");
+              return;
+          }
+            alert("Status Changed");
+      }
+  </script>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
