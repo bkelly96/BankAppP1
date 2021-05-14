@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <table border="1px">
+        <tr>
+          <td>Display Transaction by</td>
+          <td>
+            <select id="filter">
+              <option value="userid">User ID</option>
+              <option value="username">User Name</option>
+              <option value="amount">Transaction Amount</option>
+              <option value="date">Date</option>
+              <option value="All">All Transactions</option>
+            </select>
+          </td>
+          <td>
+            <button type="button" onclick="filter()" class="btn">Filter</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input id="inputLine" type="text" /></td>
+        </tr>
+      </table>
+    </div>
+    <table id="transactionTable">
+      <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+    </table>
+    <script>
+      var transactions = [];
+      fetch("http://localhost:9000/transactions")
+        .then((res) => res.json())
+        .then((res) => {
+          transactions = res;
+          var table = document.getElementById("transactionTable");
+          for (const transaction of res) {
+            let html =
+              "<td>" +
+              transaction.transactionid +
+              "</td>" +
+              "<td>" +
+              transaction.transactionid +
+              "</td>" +
+              "<td>" +
+              transaction.value +
+              "</td>" +
+              "<td>" +
+              transaction.transactiontime +
+              "</td>";
+
+            let e = document.createElement("tr");
+            e.innerHTML = html;
+            table.append(e);
+          }
+        });
+    </script>
+    <script>
+      function filter() {
+        var column = document.getElementById("filter").value;
+        var input = document.getElementById("inputLine").value;
+        var table = document.getElementById("transactionTable");
+        var tableLength = table.rows.length;
+
+        for (let i = 1; i < tableLength; i++) {
+          table.deleteRow(1);
+        }
+
+        console.log(column);
+        console.log(input);
+
+        for (const transaction of transactions) {
+          console.log(transaction);
+          // If user selects "User ID" drop down and wants a user Id of "3", remove all transactions without a userid of 3
+          if (column == "userid" && transaction.transactionid != input) {
+            continue;
+          }
+          if (column == "username" && transaction.transactionid != input) {
+            continue;
+          }
+          if (column == "amount" && transaction.value != input) {
+            continue;
+          }
+          if (column == "date" && transaction.transactiontime != input) {
+            continue;
+          }
+
+          let html =
+            "<td>" +
+            transaction.transactionid +
+            "</td>" +
+            "<td>" +
+            transaction.transactionid +
+            "</td>" +
+            "<td>" +
+            transaction.value +
+            "</td>" +
+            "<td>" +
+            transaction.transactiontime +
+            "</td>";
+
+          let e = document.createElement("tr");
+          e.innerHTML = html;
+          table.append(e);
+        }
+      }
+    </script>
+  </body>
+</html>

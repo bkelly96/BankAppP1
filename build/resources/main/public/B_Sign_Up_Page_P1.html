@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to THE BANK</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-image: url(https://www.futuregamereleases.com/wp-content/uploads/2016/10/michael-mayers-dead-by-daylight.jpg);
+      background-size: cover;
+    }
+    .sign-up-form {
+      width: 300px;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      background: #fff;
+      padding: 20px;
+      margin: 8% auto;
+      text-align: center;
+    }
+    .input-box {
+      border-radius: 20px;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #999;
+      outline: none;
+    }
+    button {
+      color: #fff;
+      width: 50%;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 15px;
+      margin: 10px 0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .sign-btn {
+      background-color: #1c8adb;
+    }
+  </style>
+  <body>
+    <div class="sign-up-form">
+      <h1>Sign Up Now</h1>
+      <input type="text" id="username" class="input-box" placeholder="Username" />
+      <input type="password" id="password" class="input-box" placeholder="Password" />
+      <input type="text" id="firstname" class="input-box" placeholder="First Name" />
+      <input type="text" id="lastname" class="input-box" placeholder="Last Name" />
+      <button type="button" id="sign-up-btn" class="sign-btn">Sign up</button>
+    </div>
+  </body>
+
+  <script>
+    async function signUpData(){
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const firstname = document.getElementById("firstname").value;
+    const lastname = document.getElementById("lastname").value;
+
+    const response = await fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        firstname: firstname,
+        lastname: lastname
+      }),
+    });
+
+    console.log(response);
+    if(response.status === 401){
+
+      alert("sign up failed");
+
+    }
+}
+  document.getElementById("sign-up-btn").addEventListener("click", signUpData);</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
